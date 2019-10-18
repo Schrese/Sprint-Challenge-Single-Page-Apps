@@ -2,8 +2,9 @@ import React from "react";
 import Header from "./components/Header.js";
 import CharacterCard from './components/CharacterCard';
 import WelcomePage from './components/WelcomePage';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import SearchForm from './components/SearchForm';
+import {Button} from 'reactstrap';
 
 
 export default function App() {
@@ -15,8 +16,9 @@ export default function App() {
         <ul>
           <li>
             {/* <Link to = '/'></Link> */}
-            <Link to = '/characters'>Characters</Link>
-            <Link to = '/search'>Search</Link>
+            <Link to = '/characters'><Button color = 'danger'>Characters</Button></Link>
+            <Link to = '/search'><Button color = 'danger'>Search</Button></Link>
+            <Link to = '/'><Button color = 'danger'>Home</Button></Link>
           </li>
         </ul>
       </nav>

@@ -17,7 +17,7 @@ export default function CharacterList(props) {
       .then(response => {
         console.log(response.data.results)
         setData(response.data.results)
-        const something = response.data.results;
+        // const something = response.data.results;
         // console.log(something);
         
       })
