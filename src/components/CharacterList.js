@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import {Toast, ToastBody, ToastHeader} from 'reactstrap';
 
 
-export default function CharacterList() {
+export default function CharacterList(props) {
   // TODO: Add useState to track data from useEffect
   const [data, setData] = useState([])
-  const [query, setQuery] = useState([])
+ 
   
   
   useEffect(() => {
@@ -14,44 +15,32 @@ export default function CharacterList() {
     axios
       .get(`https://rickandmortyapi.com/api/character/`)
       .then(response => {
-        // console.log(response.data.results)
+        console.log(response.data.results)
         setData(response.data.results)
         const something = response.data.results;
         // console.log(something);
-        const results = something.filter(character => 
-          character.toLowerCase);
-        if (results === response.data.results) {
-          setQuery(results);
-          console.log(results)
-        }
-       
+        
       })
       .catch(error => {
         console.log('there was an error', error);
       })
       
-  }, [query]);
-    const handleChange = e => {
-    setQuery(e.target.value);
-  };
+  }, []);
+   
+
 
   return (
     <section className="character-list">
-      <form>
-        <input 
-          
-          type = 'text'
-          onChange = {handleChange}
-          value = {query}
-          placeholder = 'search'
-          
-          />
-      </form>
+      
       {data.map(data => {
           return (
-            <div key = {data.id}>
-              <h2>Name: {data.name}</h2>
-              <h3>Status: {data.status}</h3>
+            <div key = {data.id} className = 'p-3 my-2 rounded'>
+              <Toast>
+                <ToastHeader>Name: {data.name}</ToastHeader>
+                <ToastBody>Status: {data.status}</ToastBody>
+              </Toast>
+              {/* <h2>Name: {data.name}</h2>
+              <h3>Status: {data.status}</h3> */}
             </div>
           )
         })}
